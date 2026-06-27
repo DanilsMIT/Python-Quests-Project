@@ -1,0 +1,29 @@
+{%extends 'base.html'%} {%block title%} Inicio {%endblock%} {%block content%}
+<div class="page">
+  <div class="page__header">
+    <h1 class="page__title">¡Bienvenido a tu lista de Quests!</h1>
+    <p class="page__subtitle">
+      Aquí puedes registrar manualmente tus quest lines pendientes
+    </p>
+    <hr class="page__divider" />
+  </div>
+
+  <div class="page__main">
+    <div class="auth">
+      <p class="auth__text">¿Estas registrado/a?</p>
+      <div class="auth__actions">
+        <a
+          href="{{url_for('authentication.login')}}"
+          class="button button--primary"
+          >Login</a
+        >
+        <a
+          href="{{url_for('authentication.register')}}"
+          class="button button--secondary"
+          >Register</a
+        >
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock%}

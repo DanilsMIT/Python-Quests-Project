@@ -1,0 +1,29 @@
+{%extends 'base.html'%} {%block title%} Registro {%endblock%} {%block content%}
+
+<div class="auth__form">
+  <form class="form" id="register-form" method="post">
+    <h2 class="form__title">Registro</h2>
+    <label for="register-user" class="form__label">User</label>
+    <input
+      class="form__input"
+      type="text"
+      minlength="3"
+      maxlength="15"
+      name="register-user"
+      id="register-user"
+      placeholder="Registre su Usuario"
+    />
+    <label for="register-password" class="form__label">Password</label>
+    <input
+      class="form__input"
+      type="password"
+      minlength="5"
+      maxlength="30"
+      name="register-password"
+      id="register-password"
+      placeholder="Registre su contraseña"
+    />
+    <button type="submit" class="form__button" prevent>Registrarse</button>
+  </form>
+</div>
+{% endblock%}

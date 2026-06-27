@@ -1,0 +1,11 @@
+# Entorno virtual
+ve-Project-TodoList/
+
+# Carpeta de base de datos
+instance/
+
+__pycache__/
+*.pyc
+*.pyo
+
+.env

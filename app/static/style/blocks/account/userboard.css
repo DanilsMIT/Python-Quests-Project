@@ -1,0 +1,116 @@
+/* =========================================
+   BLOQUE: BOARD Y QUEST CARDS
+========================================= */
+.board-header {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.quest-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* =========================================
+   TARJETA PRINCIPAL (QUEST CARD)
+========================================= */
+.quest-card {
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 0.5rem;
+  padding: 1.25rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.quest-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+/* Información de la Tarjeta (Lado Izquierdo) */
+.quest-card__info {
+  flex: 1;
+  padding-right: 1rem;
+}
+
+.quest-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.quest-card__desc {
+  font-size: 0.95rem;
+  color: #64748b;
+  line-height: 1.4;
+}
+
+/* =========================================
+   CONTENEDOR DE ACCIONES Y BOTONES (Lado Derecho)
+========================================= */
+.quest-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+}
+
+/* El Checkbox para completar la quest */
+.quest-card__checkbox {
+  width: 1.5rem;
+  height: 1.5rem;
+  cursor: pointer;
+  accent-color: #3cff00; /* Color verde al marcar la tarea */
+}
+
+/* Base de los botones de acción (Editar / Eliminar) */
+.quest-card__btn {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  user-select: none;
+}
+
+/* Efecto de crecer un poco al pasar el mouse por el botón */
+.quest-card__btn:hover {
+  transform: scale(1.15);
+}
+
+/* Estilos aplicados directamente a las imágenes (.png) dentro de los botones */
+.quest-card__btn img {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: 0.6; /* Ligeramente apagados por defecto */
+  transition: opacity 0.2s ease;
+}
+
+/* Al pasar el mouse, la imagen se ilumina al 100% de su opacidad */
+.quest-card__btn:hover img {
+  opacity: 1;
+}
+
+/* =========================================
+   MEDIA QUERIES (Para Escritorio)
+========================================= */
+@media (min-width: 768px) {
+  .board-header {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+}

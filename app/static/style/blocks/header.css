@@ -1,0 +1,43 @@
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem;
+}
+
+.page__header {
+  text-align: center;
+}
+
+.page__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.25rem;
+  letter-spacing: -0.025em;
+}
+
+.page__subtitle {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #64748b;
+  margin-bottom: 0.5rem;
+}
+
+.page__divider {
+  border: 0;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #cbd5e1, transparent);
+  margin: 1.25rem 0;
+}
+
+@media (min-width: 768px) {
+  .page {
+    padding: 3rem 1rem;
+  }
+  .page__title {
+    font-size: 3.5rem;
+  }
+  .page__subtitle {
+    font-size: 1.25rem;
+  }
+}

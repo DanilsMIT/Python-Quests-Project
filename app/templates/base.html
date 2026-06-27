@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{%block title%}{%endblock%}</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='style/index.css')}}"
+    />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar__container">
+        <a class="navbar__brand" href="{{ url_for('index') }}">Quest List</a>
+
+        <input
+          type="checkbox"
+          id="navbar-toggle-checkbox"
+          class="navbar__checkbox"
+        />
+
+        <label for="navbar-toggle-checkbox" class="navbar__toggle">
+          <div class="navbar__toggle-line"></div>
+          <div class="navbar__toggle-line"></div>
+          <div class="navbar__toggle-line"></div>
+        </label>
+
+        <div class="navbar__menu">
+          <a class="navbar__link" href="{{url_for('authentication.login')}}"
+            >Login</a
+          >
+          <a class="navbar__link" href="{{url_for('authentication.register')}}"
+            >Register</a
+          >
+        </div>
+      </div>
+    </div>
+    <!--Contenido-->
+    {%block content%}{%endblock%}
+    <!--Mensajes de Error-->
+    {% for message in get_flashed_messages() %}
+    <input
+      type="checkbox"
+      id="error-hide-{{ loop.index }}"
+      class="error__checkbox"
+    />
+
+    <div class="error__container">
+      <label for="error-hide-{{ loop.index }}" class="error__button">×</label>
+      <h4 class="error__title">Error</h4>
+      <p class="error__description">{{message}}</p>
+    </div>
+    {% endfor %}
+  </body>
+  <script
+    type="module"
+    src="{{url_for('static',filename='scripts/index.js')}}"
+  ></script>
+</html>

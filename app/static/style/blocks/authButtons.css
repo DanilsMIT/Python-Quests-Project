@@ -1,0 +1,71 @@
+/* =========================================
+   BLOQUE: BUTTON
+========================================= */
+.button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  border-radius: 0.5rem;
+  text-decoration: none;
+  text-align: center;
+  border: 1px solid transparent;
+  transition: all 0.2s ease;
+  cursor: pointer;
+  width: 100%;
+  max-width: 250px;
+}
+
+.button--primary {
+  color: #fff;
+  background-color: #2563eb;
+  border-color: #2563eb;
+  box-shadow: 0 1px 2px 0 rgba(37, 99, 235, 0.3);
+}
+
+.button--primary:hover {
+  background-color: #1d4ed8;
+  border-color: #1d4ed8;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(37, 99, 235, 0.4);
+}
+
+.button--secondary {
+  color: #1e293b;
+  background-color: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+.button--secondary:hover {
+  background-color: #e2e8f0;
+  border-color: #cbd5e1;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+}
+
+/* Modificador: Botón de Peligro / Eliminar */
+/* Modificador: Botón de Peligro / Eliminar */
+.button--danger {
+  color: #ffffff;
+  background-color: #ef4444;
+  border-color: #ef4444;
+  box-shadow: 0 1px 2px 0 rgba(239, 68, 68, 0.3);
+
+  /* ESTAS DOS LÍNEAS HACEN LA MAGIA DE CENTRARLO */
+  margin: 0 auto;
+  display: block;
+}
+
+.button--danger:hover {
+  background-color: #dc2626;
+  border-color: #dc2626;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px -1px rgba(239, 68, 68, 0.4);
+}
+
+@media (min-width: 768px) {
+  .button {
+    width: auto;
+    padding: 0.6rem 1.5rem;
+  }
+}

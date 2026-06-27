@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis Quests</title>
+    <link
+      rel="stylesheet"
+      href="{{url_for('static',filename='style/index.css')}}"
+    />
+  </head>
+  <body>
+    <div class="navbar">
+      <div class="navbar__container">
+        <a class="navbar__brand">Quest List</a>
+        <input
+          type="checkbox"
+          id="navbar-toggle-checkbox"
+          class="navbar__checkbox"
+        />
+        <label for="navbar-toggle-checkbox" class="navbar__toggle">
+          <div class="navbar__toggle-line"></div>
+          <div class="navbar__toggle-line"></div>
+          <div class="navbar__toggle-line"></div>
+        </label>
+        <div class="navbar__menu">
+          {% if g.user %}
+          <div class="dropdown">
+            <input
+              type="checkbox"
+              id="dropdown-toggle"
+              class="dropdown__checkbox"
+            />
+            <label for="dropdown-toggle" class="dropdown__button">
+              {{ g.user.username }}
+            </label>
+            <div class="dropdown__content">
+              <a
+                class="dropdown__link"
+                href="{{ url_for('authentication.logout') }}"
+                >Cerrar Sesión</a
+              >
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="page">
+      <div class="board-header">
+        <div>
+          <h1 class="page__title">Quests</h1>
+          <p class="page__subtitle">Lista de aventuras pendientes</p>
+        </div>
+        <label for="popup-toggle" class="button button--primary"
+          >+ Nueva Quest</label
+        >
+      </div>
+
+      <main class="board">
+        <ul class="quest-list" id="quest-list">
+          {% for quest in questslist %}
+          <li class="quest-card">
+            <div class="quest-card__info">
+              <h3 class="quest-card__title">{{ quest.title }}</h3>
+              <p class="quest-card__desc">{{ quest.description }}</p>
+            </div>
+
+            <div class="quest-card__actions">
+              <label
+                for="edit-popup-{{ quest.id }}"
+                class="quest-card__btn quest-card__btn--edit"
+                title="Editar quest"
+              >
+                <img
+                  src="{{ url_for('static', filename='icons/editarIco.png') }}"
+                  alt="Editar"
+                />
+              </label>
+
+              <label
+                for="delete-popup-{{ quest.id }}"
+                class="quest-card__btn quest-card__btn--delete"
+                title="Eliminar quest"
+              >
+                <img
+                  src="{{ url_for('static', filename='icons/deleteIco.png') }}"
+                  alt="Eliminar"
+                />
+              </label>
+
+              <form
+                action="/Quests/toggle"
+                method="post"
+                style="display: flex; align-items: center; margin: 0"
+              >
+                <input type="hidden" name="quest-id" value="{{ quest.id }}" />
+
+                <input
+                  type="checkbox"
+                  class="quest-card__checkbox"
+                  title="Completar quest"
+                  {%
+                  if
+                  quest.state
+                  %}checked{%
+                  endif
+                  %}
+                  onchange="this.form.submit()"
+                />
+              </form>
+            </div>
+          </li>
+          {% endfor %}
+        </ul>
+      </main>
+    </div>
+
+    {% for message in get_flashed_messages() %}
+    <input
+      type="checkbox"
+      id="error-hide-{{ loop.index }}"
+      class="error__checkbox"
+    />
+    <div class="error__container">
+      <label for="error-hide-{{ loop.index }}" class="error__button">×</label>
+      <h4 class="error__title">Alerta</h4>
+      <p class="error__description">{{message}}</p>
+    </div>
+    {% endfor %} {% for quest in questslist %}
+    <input
+      type="checkbox"
+      id="edit-popup-{{ quest.id }}"
+      class="popup__toggle-checkbox"
+    />
+    <div class="popup">
+      <div class="popup__content">
+        <label for="edit-popup-{{ quest.id }}" class="popup__close">×</label>
+        <h2 class="form__title">Editar Quest</h2>
+        <form class="form form--popup" action="/Quests/edit" method="post">
+          <input type="hidden" name="quest-id" value="{{ quest.id }}" />
+          <label for="edit-title-{{ quest.id }}" class="form__label"
+            >Título</label
+          >
+          <input
+            type="text"
+            id="edit-title-{{ quest.id }}"
+            name="quest-title"
+            class="form__input"
+            maxlength="20"
+            value="{{ quest.title }}"
+            required
+          />
+          <label for="edit-desc-{{ quest.id }}" class="form__label"
+            >Descripción</label
+          >
+          <textarea
+            id="edit-desc-{{ quest.id }}"
+            name="quest-description"
+            class="form__input form__input--textarea"
+            maxlength="500"
+          >
+{{ quest.description }}</textarea
+          >
+          <button type="submit" class="button button--primary">
+            Guardar Cambios
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <input
+      type="checkbox"
+      id="delete-popup-{{ quest.id }}"
+      class="popup__toggle-checkbox"
+    />
+    <div class="popup">
+      <div class="popup__content popup__content--small">
+        <label for="delete-popup-{{ quest.id }}" class="popup__close">×</label>
+        <h2 class="form__title" style="color: #ef4444">Eliminar Quest</h2>
+
+        <form class="form form--popup" action="/Quests/delete" method="post">
+          <input type="hidden" name="quest-id" value="{{ quest.id }}" />
+
+          <p class="popup__text">
+            ¿Estás seguro de que deseas abandonar la misión
+            <strong>"{{ quest.title }}"</strong>?
+          </p>
+
+          <button type="submit" class="button button--danger">
+            Sí, Eliminar
+          </button>
+        </form>
+      </div>
+    </div>
+    {% endfor %}
+
+    <input type="checkbox" id="popup-toggle" class="popup__toggle-checkbox" />
+    <div class="popup">
+      <div class="popup__content">
+        <label for="popup-toggle" class="popup__close">×</label>
+        <h2 class="form__title">Crear Nueva Quest</h2>
+        <form class="form form--popup" id="new-quest-form" method="post">
+          <label for="quest-title" class="form__label">Título</label>
+          <input
+            type="text"
+            id="quest-title"
+            name="quest-title"
+            class="form__input"
+            maxlength="20"
+            placeholder="Título de la misión"
+            required
+          />
+          <label for="quest-desc" class="form__label">Descripción</label>
+          <textarea
+            id="quest-description"
+            name="quest-description"
+            class="form__input form__input--textarea"
+            maxlength="500"
+            placeholder="Detalles de la misión..."
+          ></textarea>
+          <button type="submit" class="button button--primary">
+            Aceptar Quest
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="{{url_for('static',filename='scripts/index.js')}}"
+    ></script>
+  </body>
+</html>

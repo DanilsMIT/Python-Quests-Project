@@ -1,0 +1,23 @@
+/* =========================================
+   IMPORTACIÓN DE BLOQUES BEM
+========================================= */
+
+/* 1. Reset (Siempre primero) */
+@import "./blocks/reset.css";
+
+/* 2. Navegación y Estructura global */
+@import "./blocks/nav.css";
+@import "./blocks/header.css";
+
+/* 3. Componentes de Autenticación */
+@import "./blocks/auth.css";
+@import "./blocks/authForm.css";
+@import "./blocks/authButtons.css";
+
+/* 4. Utilidades y Modales */
+@import "./blocks/error.css";
+@import "./blocks/popup.css";
+
+/* 5. Vistas de Cuenta (Subcarpeta) */
+@import "./blocks/account/usernav.css";
+@import "./blocks/account/userboard.css";

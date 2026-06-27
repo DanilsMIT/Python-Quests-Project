@@ -1,0 +1,26 @@
+{%extends 'base.html'%} {%block title%} login {%endblock%} {%block content%}
+<div class="auth__form">
+  <form class="form" id="login-form" method="post">
+    <h2 class="form__title">Login</h2>
+    <label for="register-user" class="form__label">User</label>
+    <input
+      class="form__input"
+      type="text"
+      maxlength="15"
+      name="login-user"
+      id="login-user"
+      placeholder="Ingrese su Usuario"
+    />
+    <label for="register-password" class="form__label">Password</label>
+    <input
+      class="form__input"
+      type="password"
+      maxlength="30"
+      name="login-password"
+      id="login-password"
+      placeholder="Ingrese su contraseña"
+    />
+    <button type="submit" class="form__button">Entrar</button>
+  </form>
+</div>
+{% endblock%}

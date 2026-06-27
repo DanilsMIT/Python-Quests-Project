@@ -1,0 +1,76 @@
+/* =========================================
+   BLOQUE: DROPDOWN (Menú de Usuario por Clic)
+========================================= */
+.dropdown {
+  position: relative;
+  display: flex; /* Cambiamos a flex para tener mejor control de alineación */
+  flex-direction: column;
+  align-items: flex-end; /* ¡La magia! Esto empuja el nombre hacia la derecha */
+}
+
+/* Ocultamos el checkbox de control */
+.dropdown__checkbox {
+  display: none;
+}
+
+.dropdown__button {
+  color: rgba(255, 255, 255, 0.9); /* Más blanco para que destaque */
+  font-size: 1.05rem;
+  font-weight: 600; /* Hacemos el nombre en negrita para que se vea más estético */
+  cursor: pointer;
+  padding: 0.5rem 0;
+  transition:
+    color 0.2s ease,
+    transform 0.2s ease;
+  user-select: none;
+}
+
+/* Un sutil efecto de escala al pasar el mouse ya que no hay flecha */
+.dropdown__button:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.dropdown__content {
+  display: none;
+  position: absolute;
+  right: 0;
+  top: 100%;
+  margin-top: 0.5rem;
+  background-color: #ffffff;
+  min-width: 150px;
+  border-radius: 0.5rem;
+  box-shadow:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  z-index: 100;
+}
+
+.dropdown__checkbox:checked ~ .dropdown__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown__link {
+  color: #334155;
+  padding: 0.75rem 1rem;
+  text-decoration: none;
+  font-size: 0.95rem;
+  text-align: left; /* Mantenemos el texto del link alineado a la izquierda por estética */
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.dropdown__link:hover {
+  background-color: #f1f5f9;
+  color: #ef4444;
+}
+
+/* Media Query para el Navbar en Escritorio */
+@media (min-width: 768px) {
+  .dropdown {
+    align-items: center; /* En PC lo regresamos al centro para que encaje con el nav */
+  }
+}

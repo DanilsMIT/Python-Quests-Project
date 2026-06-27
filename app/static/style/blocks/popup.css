@@ -1,0 +1,93 @@
+/* =========================================
+   BLOQUE: POPUP (Modal Form)
+========================================= */
+.popup__toggle-checkbox {
+  display: none;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+/* LA MAGIA CORREGIDA: Cambiamos ~ por + */
+.popup__toggle-checkbox:checked + .popup {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.popup__content {
+  background-color: #ffffff;
+  width: 90%;
+  max-width: 450px;
+  border-radius: 0.75rem;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+  transform: translateY(2rem);
+  transition: transform 0.3s ease;
+}
+
+/* LA MAGIA CORREGIDA: Cambiamos ~ por + */
+.popup__toggle-checkbox:checked + .popup .popup__content {
+  transform: translateY(0);
+}
+
+.popup__close {
+  position: absolute;
+  top: 1rem;
+  right: 1.25rem;
+  font-size: 2rem;
+  color: #94a3b8;
+  cursor: pointer;
+  line-height: 1;
+  transition: color 0.2s;
+}
+
+.popup__close:hover {
+  color: #ef4444;
+}
+
+/* =========================================
+   TEXTOS Y ADVERTENCIAS DEL POPUP
+========================================= */
+.popup__text {
+  font-size: 1.1rem; /* Agrandamos la letra un poco */
+  line-height: 1.6; /* Le damos más espacio y "aire" entre las líneas (clave para que no se vea raro) */
+  color: #475569;
+  text-align: center;
+  margin-top: 0.5rem;
+  margin-bottom: 1.75rem; /* Separación perfecta con el botón rojo */
+}
+
+.form--popup {
+  margin: 0;
+  padding: 0;
+  border: none;
+  background: transparent;
+  box-shadow: none;
+}
+
+.form__input--textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Modificador para el popup de eliminar */
+.popup__content--small {
+  max-width: 350px;
+  padding: 2.5rem 2rem 2rem;
+  text-align: center;
+}
